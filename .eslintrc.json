@@ -1,3 +1,59 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".d.ts"],
+        "moduleDirectory": [
+          "node_modules", "src/"
+        ]
+      }
+    }
+  },
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:prettier/recommended",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:import/typescript",
+    "plugin:import/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint", "prettier", "react-hooks"],
+  "rules": {
+    "object-shorthand": "error",
+    "prefer-const": "error",
+    "no-debugger": "warn",
+    "@typescript-eslint/no-unused-vars": "error",
+    "import/no-unused-modules": "error",
+    "import/newline-after-import": "error",
+    "@typescript-eslint/no-explicit-any": "off",
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "block-like", "next": "*" },
+      { "blankLine": "always", "prev": "*", "next": "block-like" }
+    ],
+    "import/named": "off",
+    "import/namespace": "off",
+    "import/order": "error",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-curly-brace-presence": [1, {"props": "always"}],
+    "prettier/prettier": ["error", {"singleQuote":  true, "printWidth":  100, "endOfLine": "auto"}],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
 }
