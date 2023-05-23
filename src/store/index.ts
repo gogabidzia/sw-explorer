@@ -1,6 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
+import charactersReducer from './characters/slice';
+import characterFilterReducer from './characterFilter/slice';
 
-const rootReducer = {};
+const rootReducer = {
+  characters: charactersReducer,
+  characterFilter: characterFilterReducer,
+};
 
 export const store = configureStore({
   reducer: rootReducer,
