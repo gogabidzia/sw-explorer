@@ -18,14 +18,13 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Character } from '@/src/external/swapi';
-import { updateCharacter } from '@/src/store/characters/slice';
 
 type CharacterPreviewProps = {
   character: Character;
+  onCharacterUpdate: (updatedCharacter: Character) => any;
 };
 
-const CharacterPreview = ({ character }: CharacterPreviewProps) => {
-  const dispatch = useDispatch();
+const CharacterPreview = ({ character, onCharacterUpdate }: CharacterPreviewProps) => {
   const [editMode, setEditMode] = useState(false);
 
   const {
@@ -38,7 +37,7 @@ const CharacterPreview = ({ character }: CharacterPreviewProps) => {
   });
 
   const onSubmit = (updatedCharacter: Character) => {
-    dispatch(updateCharacter(updatedCharacter));
+    onCharacterUpdate(updatedCharacter);
 
     setEditMode(false);
   };
@@ -52,13 +51,16 @@ const CharacterPreview = ({ character }: CharacterPreviewProps) => {
           <Card w={'md'}>
             <CardHeader>
               {!editMode ? (
-                <Heading size={'lg'}>{values.name}</Heading>
+                <Heading size={'lg'} data-testid={'character-name-text'}>
+                  {values.name}
+                </Heading>
               ) : (
                 <Input
                   {...register('name', { required: true })}
                   errorBorderColor={'red.300'}
                   isInvalid={!!errors.name}
                   placeholder={'Enter Name'}
+                  data-testid={'character-name-input'}
                 />
               )}
             </CardHeader>
@@ -69,13 +71,16 @@ const CharacterPreview = ({ character }: CharacterPreviewProps) => {
                     Height
                   </Heading>
                   {!editMode ? (
-                    <Text fontSize={'sm'}>{values.height} cm</Text>
+                    <Text fontSize={'sm'} data-testid={'character-height-text'}>
+                      {values.height} cm
+                    </Text>
                   ) : (
                     <Input
                       {...register('height', { required: true })}
                       errorBorderColor={'red.300'}
                       isInvalid={!!errors.height}
                       placeholder={'Enter Height (cm)'}
+                      data-testid={'character-height-input'}
                     />
                   )}
                 </Box>
@@ -84,13 +89,16 @@ const CharacterPreview = ({ character }: CharacterPreviewProps) => {
                     Mass
                   </Heading>
                   {!editMode ? (
-                    <Text fontSize={'sm'}>{values.mass} kg</Text>
+                    <Text fontSize={'sm'} data-testid={'character-mass-text'}>
+                      {values.mass} kg
+                    </Text>
                   ) : (
                     <Input
                       {...register('mass', { required: true })}
                       errorBorderColor={'red.300'}
                       isInvalid={!!errors.mass}
                       placeholder={'Enter Mass (kg)'}
+                      data-testid={'character-mass-input'}
                     />
                   )}
                 </Box>
@@ -102,16 +110,21 @@ const CharacterPreview = ({ character }: CharacterPreviewProps) => {
                     onClick={() => {
                       setEditMode(true);
                     }}
+                    data-testid={'character-edit-button'}
                   >
                     Edit
                   </Button>
                 ) : (
-                  <Button colorScheme={'blue'} onClick={handleSubmit(onSubmit)}>
+                  <Button
+                    colorScheme={'blue'}
+                    onClick={handleSubmit(onSubmit)}
+                    data-testid={'character-save-button'}
+                  >
                     Save
                   </Button>
                 )}
                 <Link href={'/'}>
-                  <HStack>
+                  <HStack data-testid={'character-back-button'}>
                     <ArrowBackIcon boxSize={5} />
                     <Text>Back to list</Text>
                   </HStack>

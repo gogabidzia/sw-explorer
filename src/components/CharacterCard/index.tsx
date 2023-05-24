@@ -19,9 +19,16 @@ type CharacterProps = {
 const CharacterCard = ({ character }: CharacterProps) => {
   return (
     <Link href={`/characters/${character.id}`}>
-      <Card _hover={{ boxShadow: 'md' }} cursor={'pointer'} height={'100%'}>
+      <Card
+        _hover={{ boxShadow: 'md' }}
+        cursor={'pointer'}
+        height={'100%'}
+        data-testid={'character-card'}
+      >
         <CardHeader>
-          <Heading size={'md'}>{character.name}</Heading>
+          <Heading size={'md'} data-testid={'character-name'}>
+            {character.name}
+          </Heading>
         </CardHeader>
         <CardBody>
           <Stack divider={<StackDivider />}>
@@ -29,14 +36,18 @@ const CharacterCard = ({ character }: CharacterProps) => {
               <Heading size={'xs'} textTransform={'uppercase'}>
                 Height
               </Heading>
-              <Text fontSize={'sm'}>{character.height} cm</Text>
+              <Text fontSize={'sm'} data-testid={'character-height'}>
+                {character.height} cm
+              </Text>
             </Box>
             <Box>
               <Heading size={'xs'} textTransform={'uppercase'}>
                 Eye Color
               </Heading>
               <Flex align={'center'}>
-                <Text fontSize={'sm'}>{character.eye_color}</Text>
+                <Text fontSize={'sm'} data-testid={'character-eyecolor'}>
+                  {character.eye_color}
+                </Text>
                 <Box w={3} h={3} bg={character.eye_color} display={'inline-block'} ml={1} />
               </Flex>
             </Box>

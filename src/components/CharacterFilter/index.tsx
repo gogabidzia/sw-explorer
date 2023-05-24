@@ -14,6 +14,7 @@ const CharacterFilter = ({ onSearchTermChange }: CharacterFilterProps) => {
       <Input
         type={'tel'}
         placeholder={'Search for cool guys'}
+        data-testid={'character-filter-input'}
         onChange={(e) => {
           onSearchTermChange(e.target.value);
         }}

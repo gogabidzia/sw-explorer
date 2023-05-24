@@ -14,7 +14,7 @@ const Page = ({ children }: PageProps) => {
       </Head>
       <Container p={5} maxW={'container.xl'}>
         <Heading>
-          <Center>
+          <Center data-testid={'header-text'}>
             <Image src={'/yoda.png'} alt={'yoda'} h={50} />
             Star Wars Character List
           </Center>

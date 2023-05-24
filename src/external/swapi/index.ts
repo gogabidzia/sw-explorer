@@ -16,6 +16,7 @@ export type CharacterFromResponse = {
   gender: string;
   url: string;
 };
+
 export type Character = CharacterFromResponse & { id: string };
 
 export type CharactersResponsePayload = {

@@ -3,4 +3,5 @@
 
 yarn lint
 yarn build:noEmit
-
+yarn test:unit
+yarn test:e2e

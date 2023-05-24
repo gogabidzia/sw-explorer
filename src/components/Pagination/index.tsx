@@ -12,7 +12,7 @@ const Pagination = ({ hasPrev, hasNext, currentPage, onPageChange, total }: Pagi
   const lastPage = Math.floor(total / 10) + 1;
 
   return (
-    <Box>
+    <Box data-testid={'pagination'}>
       <HStack align={'center'}>
         <Button
           colorScheme={'blue'}
@@ -24,6 +24,7 @@ const Pagination = ({ hasPrev, hasNext, currentPage, onPageChange, total }: Pagi
           &laquo;
         </Button>
         <Button
+          data-testid={'pagination-prev'}
           colorScheme={'blue'}
           isDisabled={!hasPrev}
           onClick={() => {
@@ -36,6 +37,7 @@ const Pagination = ({ hasPrev, hasNext, currentPage, onPageChange, total }: Pagi
           Page {currentPage} of {lastPage}
         </Text>
         <Button
+          data-testid={'pagination-next'}
           colorScheme={'blue'}
           isDisabled={!hasNext}
           onClick={() => {
