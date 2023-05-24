@@ -16,7 +16,6 @@ import {
 import Link from 'next/link';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 import { Character } from '@/src/external/swapi';
 
 type CharacterPreviewProps = {

@@ -22,7 +22,7 @@ const CharacterCard = ({ character }: CharacterProps) => {
       <Card
         _hover={{ boxShadow: 'md' }}
         cursor={'pointer'}
-        height={'100%'}
+        h={'100%'}
         data-testid={'character-card'}
       >
         <CardHeader>

@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import CharacterList from '..';
 import { makeCharacter } from '@/tests/factory/character-factory';
 import { CharacterMap } from '@/src/store/characters/slice';
