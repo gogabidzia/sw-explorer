@@ -11,7 +11,7 @@ const customJestConfig = {
 };
 
 const env = {
-  APP_URL: 'http://localhost:3000',
+  APP_URL: process.env.APP_URL || 'http://localhost:3000',
 };
 
 for (const item in env) {
