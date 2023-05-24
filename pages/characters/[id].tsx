@@ -9,7 +9,7 @@ import { useCharacter } from '@/src/hooks/useCharacter';
 import Loadable from '@/src/components/Loadable';
 import { selectAllCharacters } from '@/src/store/characters/selectors';
 import { updateCharacter } from '@/src/store/characters/slice';
-import { Character } from '@/src/external/swapi';
+import { Character } from '@/src/external/swapi/types';
 
 const CharacterPage = () => {
   const router = useRouter();
@@ -34,7 +34,7 @@ const CharacterPage = () => {
         {error ? (
           <Center>
             <VStack>
-              <Text color={'tomato'}>Error Loading Character</Text>
+              <Text color={'tomato'}>Character not found</Text>
               <Link href={'/'}>Go Back</Link>
             </VStack>
           </Center>

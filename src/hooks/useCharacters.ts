@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SWApiClient from '../external/swapi';
 import { selectCharacterFilter } from '../store/characterFilter/selectors';
@@ -10,7 +10,7 @@ export const useCharacters = () => {
   const dispatch = useDispatch();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<any>(false);
+  const [error, setError] = useState();
   const [pageData, setPageData] = useState({
     total: 0,
     hasPrev: false,
@@ -20,7 +20,7 @@ export const useCharacters = () => {
   const characters = useSelector(selectAllCharacters);
   const filters = useSelector(selectCharacterFilter);
 
-  const fetchCharacters = () => {
+  const fetchCharacters = useCallback(() => {
     setIsLoading(true);
 
     new SWApiClient()
@@ -35,11 +35,11 @@ export const useCharacters = () => {
       })
       .catch((e) => setError(e))
       .finally(() => setIsLoading(false));
-  };
+  }, [dispatch, filters]);
 
   useEffect(() => {
     fetchCharacters();
-  }, [filters.page]);
+  }, [filters.page, fetchCharacters]);
 
   useEffect(() => {
     if (filters.search === null) return;
@@ -51,7 +51,7 @@ export const useCharacters = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [filters.search]);
+  }, [filters.search, fetchCharacters]);
 
   const onSearchTermChange = (term: string) => {
     dispatch(setSearch(term));

@@ -3,18 +3,14 @@ import {
   Card,
   CardBody,
   CardHeader,
-  Flex,
   Heading,
+  HStack,
   Stack,
   StackDivider,
   Text,
 } from '@chakra-ui/react';
 import Link from 'next/link';
-import { Character } from '@/src/external/swapi';
-
-type CharacterProps = {
-  character: Character;
-};
+import { CharacterProps } from './types';
 
 const CharacterCard = ({ character }: CharacterProps) => {
   return (
@@ -44,12 +40,12 @@ const CharacterCard = ({ character }: CharacterProps) => {
               <Heading size={'xs'} textTransform={'uppercase'}>
                 Eye Color
               </Heading>
-              <Flex align={'center'}>
+              <HStack align={'center'}>
                 <Text fontSize={'sm'} data-testid={'character-eyecolor'}>
                   {character.eye_color}
                 </Text>
                 <Box w={3} h={3} bg={character.eye_color} display={'inline-block'} ml={1} />
-              </Flex>
+              </HStack>
             </Box>
           </Stack>
         </CardBody>

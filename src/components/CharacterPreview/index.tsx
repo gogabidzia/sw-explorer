@@ -16,12 +16,8 @@ import {
 import Link from 'next/link';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Character } from '@/src/external/swapi';
-
-type CharacterPreviewProps = {
-  character: Character;
-  onCharacterUpdate: (updatedCharacter: Character) => any;
-};
+import { CharacterPreviewProps } from './types';
+import { Character } from '@/src/external/swapi/types';
 
 const CharacterPreview = ({ character, onCharacterUpdate }: CharacterPreviewProps) => {
   const [editMode, setEditMode] = useState(false);
@@ -54,13 +50,20 @@ const CharacterPreview = ({ character, onCharacterUpdate }: CharacterPreviewProp
                   {values.name}
                 </Heading>
               ) : (
-                <Input
-                  {...register('name', { required: true })}
-                  errorBorderColor={'red.300'}
-                  isInvalid={!!errors.name}
-                  placeholder={'Enter Name'}
-                  data-testid={'character-name-input'}
-                />
+                <>
+                  <Input
+                    {...register('name', { required: true, validate: (value) => !!value.trim() })}
+                    errorBorderColor={'red.300'}
+                    isInvalid={!!errors.name}
+                    placeholder={'Enter Name'}
+                    data-testid={'character-name-input'}
+                  />
+                  {errors.name && (
+                    <Text fontSize={'xs'} color={'tomato'}>
+                      Name is required
+                    </Text>
+                  )}
+                </>
               )}
             </CardHeader>
             <CardBody>
@@ -74,13 +77,23 @@ const CharacterPreview = ({ character, onCharacterUpdate }: CharacterPreviewProp
                       {values.height} cm
                     </Text>
                   ) : (
-                    <Input
-                      {...register('height', { required: true })}
-                      errorBorderColor={'red.300'}
-                      isInvalid={!!errors.height}
-                      placeholder={'Enter Height (cm)'}
-                      data-testid={'character-height-input'}
-                    />
+                    <>
+                      <Input
+                        {...register('height', {
+                          required: true,
+                          validate: (value) => !!value.trim(),
+                        })}
+                        errorBorderColor={'red.300'}
+                        isInvalid={!!errors.height}
+                        placeholder={'Enter Height (cm)'}
+                        data-testid={'character-height-input'}
+                      />
+                      {errors.height && (
+                        <Text fontSize={'xs'} color={'tomato'}>
+                          Height is required
+                        </Text>
+                      )}
+                    </>
                   )}
                 </Box>
                 <Box>
@@ -92,13 +105,23 @@ const CharacterPreview = ({ character, onCharacterUpdate }: CharacterPreviewProp
                       {values.mass} kg
                     </Text>
                   ) : (
-                    <Input
-                      {...register('mass', { required: true })}
-                      errorBorderColor={'red.300'}
-                      isInvalid={!!errors.mass}
-                      placeholder={'Enter Mass (kg)'}
-                      data-testid={'character-mass-input'}
-                    />
+                    <>
+                      <Input
+                        {...register('mass', {
+                          required: true,
+                          validate: (value) => !!value.trim(),
+                        })}
+                        errorBorderColor={'red.300'}
+                        isInvalid={!!errors.mass}
+                        placeholder={'Enter Mass (kg)'}
+                        data-testid={'character-mass-input'}
+                      />
+                      {errors.mass && (
+                        <Text fontSize={'xs'} color={'tomato'}>
+                          Mass is required
+                        </Text>
+                      )}
+                    </>
                   )}
                 </Box>
               </Stack>

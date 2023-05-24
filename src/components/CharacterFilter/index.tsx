@@ -1,9 +1,6 @@
 import { SearchIcon } from '@chakra-ui/icons';
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
-
-type CharacterFilterProps = {
-  onSearchTermChange: (term: string) => any;
-};
+import { CharacterFilterProps } from './types';
 
 const CharacterFilter = ({ onSearchTermChange }: CharacterFilterProps) => {
   return (

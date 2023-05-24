@@ -1,10 +1,6 @@
-import { ReactNode } from 'react';
 import { Center, Container, Heading, Image } from '@chakra-ui/react';
 import Head from 'next/head';
-
-type PageProps = {
-  children: ReactNode;
-};
+import { PageProps } from './types';
 
 const Page = ({ children }: PageProps) => {
   return (

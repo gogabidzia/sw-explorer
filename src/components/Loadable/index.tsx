@@ -1,10 +1,5 @@
 import { Center, Spinner } from '@chakra-ui/react';
-import { ReactNode } from 'react';
-
-type LoadableProps = {
-  children: ReactNode;
-  isLoading: boolean;
-};
+import { LoadableProps } from './types';
 
 const Loadable = ({ isLoading, children }: LoadableProps) => {
   return isLoading ? (

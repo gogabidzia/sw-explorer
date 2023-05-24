@@ -3,4 +3,4 @@
 ### Properties
 | property  | type      |
 |-----------|-----------|
-| onSearchTermChange | `(term: string) => any` |
+| onSearchTermChange | `(term: string) => void` |

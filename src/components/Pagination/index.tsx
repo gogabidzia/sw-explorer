@@ -1,12 +1,5 @@
 import { Box, Button, HStack, Text } from '@chakra-ui/react';
-
-type PaginationProps = {
-  hasPrev: boolean;
-  hasNext: boolean;
-  currentPage: number;
-  total: number;
-  onPageChange: (page: number) => any;
-};
+import { PaginationProps } from './types';
 
 const Pagination = ({ hasPrev, hasNext, currentPage, onPageChange, total }: PaginationProps) => {
   const lastPage = Math.floor(total / 10) + 1;

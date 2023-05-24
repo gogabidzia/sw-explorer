@@ -1,12 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Character } from '@/src/external/swapi';
-
-export type CharacterMap = Record<string, Character>;
-
-export type CharactersState = {
-  original: CharacterMap;
-  updated: CharacterMap;
-};
+import { CharacterMap, CharactersState } from './types';
+import { Character } from '@/src/external/swapi/types';
 
 const initialState: CharactersState = {
   original: {},

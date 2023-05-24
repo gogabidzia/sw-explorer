@@ -1,9 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-export type CharacterFiltersState = {
-  page: number;
-  search: string | null;
-};
+import { CharacterFiltersState } from './types';
 
 const initialState: CharacterFiltersState = {
   page: 1,

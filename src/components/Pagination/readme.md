@@ -7,4 +7,4 @@
 | hasNext | `boolean` | true if next page is available
 | currentPage | `number` | current page number
 | total | `number` | total number items
-| onPageChange | `(page: number) => any` | callback for page changed event
+| onPageChange | `(page: number) => void` | callback for page changed event

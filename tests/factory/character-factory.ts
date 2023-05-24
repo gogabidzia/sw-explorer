@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker';
-import { Character } from '@/src/external/swapi';
+import { Character } from '@/src/external/swapi/types';
 
 export const makeCharacter = (): Character => {
   return {
