@@ -18,6 +18,7 @@ const characterFilterSlice = createSlice({
       action: PayloadAction<CharacterFiltersState['search']>
     ) {
       state.search = action.payload;
+      state.page = 1;
     },
   },
 });

@@ -35,15 +35,9 @@ export const useCharacters = () => {
       })
       .catch((e) => setError(e))
       .finally(() => setIsLoading(false));
-  }, [dispatch, filters]);
+  }, [filters, dispatch]);
 
   useEffect(() => {
-    fetchCharacters();
-  }, [filters.page, fetchCharacters]);
-
-  useEffect(() => {
-    if (filters.search === null) return;
-
     const timer = setTimeout(() => {
       fetchCharacters();
     }, 300); // debouncing
@@ -51,7 +45,7 @@ export const useCharacters = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [filters.search, fetchCharacters]);
+  }, [filters, fetchCharacters]);
 
   const onSearchTermChange = (term: string) => {
     dispatch(setSearch(term));
