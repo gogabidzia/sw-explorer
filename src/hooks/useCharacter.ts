@@ -9,6 +9,8 @@ export const useCharacter = ({ id }: UseCharacterArgs) => {
   const [error, setError] = useState(false);
 
   const fetchCharacter = useCallback(() => {
+    if (!id) return;
+
     setIsLoading(true);
 
     new SWApiClient()
@@ -19,10 +21,8 @@ export const useCharacter = ({ id }: UseCharacterArgs) => {
   }, [id]);
 
   useEffect(() => {
-    if (!id) return;
-
     fetchCharacter();
-  }, [id, fetchCharacter]);
+  }, [fetchCharacter]);
 
   return {
     character,

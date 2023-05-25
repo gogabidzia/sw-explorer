@@ -5,6 +5,7 @@ import { selectCharacterFilter } from '../store/characterFilter/selectors';
 import { setPage, setSearch } from '../store/characterFilter/slice';
 import { selectAllCharacters } from '../store/characters/selectors';
 import { setCharacters } from '../store/characters/slice';
+import { useDebouncedValue } from './useDebouncedValue';
 
 export const useCharacters = () => {
   const dispatch = useDispatch();
@@ -19,12 +20,16 @@ export const useCharacters = () => {
 
   const characters = useSelector(selectAllCharacters);
   const filters = useSelector(selectCharacterFilter);
+  const debouncedSearch = useDebouncedValue(filters.search, 300);
 
   const fetchCharacters = useCallback(() => {
     setIsLoading(true);
 
     new SWApiClient()
-      .characters(filters)
+      .characters({
+        page: filters.page,
+        search: debouncedSearch,
+      })
       .then((data) => {
         setPageData({
           total: data.count,
@@ -35,17 +40,11 @@ export const useCharacters = () => {
       })
       .catch((e) => setError(e))
       .finally(() => setIsLoading(false));
-  }, [filters, dispatch]);
+  }, [filters.page, debouncedSearch, dispatch]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      fetchCharacters();
-    }, 300); // debouncing
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [filters, fetchCharacters]);
+    fetchCharacters();
+  }, [fetchCharacters]);
 
   const onSearchTermChange = (term: string) => {
     dispatch(setSearch(term));
